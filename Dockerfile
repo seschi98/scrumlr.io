@@ -15,6 +15,7 @@ COPY . .
 
 RUN yarn build
 
-FROM nginx:alpine
+FROM nginxinc/nginx-unprivileged:alpine
 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html
